@@ -9,7 +9,7 @@ my $src="";
 if($#ARGV > -1){
     $src=shift;
 }else{
-    $src="/home/zhch/git_repo/blog_markdown";
+    $src="/home/zhch/git_repo/nut_wordpress";
 }
 my $dest="/home/zhch/document/blog_static/_posts/";
 #find $src |grep -e \.mkd$ > tempmkdfiles
