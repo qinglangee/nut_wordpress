@@ -1,0 +1,8 @@
+# spring  mvc
+返回 json @ResponseBody   
+[spring MVC之返回JSON数据(Spring3.0 MVC)][1]
+
+
+
+
+[1]: http://blog.csdn.net/yztezhl/article/details/21371715

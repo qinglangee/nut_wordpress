@@ -1,0 +1,34 @@
+# 默认目录结构
+public   样式
+routes   控制器, action
+views  前端页面
+app.js  主程序启动入口 
+package.js  pom.xml ^_^
+
+
+# 配置
+静态文件目录 
+
+	app.use('/static', express.static(__dirname+'/static'));
+	app.use('/static', express.static(path.join(__dirname, 'static')));
+
+# session使用
+## session 中添加值
+req.session.name = "xxx";
+req.session.age = 123;
+## 设置session失效时间
+
+# log 打印
+已经有log了, 看wordnote
+# 相关工具 安装/使用
+
+	npm install -g express-generator
+生成一个默认工程, 使用 stylus 和 ejs
+
+	express --sessions --css stylus --ejs myapp
+
+
+refs:  
+[中文文档](http://expressjs.jser.us/guide.html)  
+[英文官网](http://expressjs.com/)  
+[3.x 到 4.x的迁移](http://www.cnblogs.com/haogj/p/3985438.html)  

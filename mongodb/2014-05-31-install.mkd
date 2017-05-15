@@ -1,0 +1,16 @@
+# 安装mongodb
+[install 查看其它的安装方式][install]
+
+## 下载
+curl http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.4.6.tgz > mongodb.tgz
+解压后就可以运行
+
+## 运行mongodb
+
+mongod 默认数据目录是/data/db/, 运行mongod的用户要对数据目录有读写的权限, 可以用 --dbpath 参数指定别的目录为数据目录
+
+    bin/mongod --dbpath /home/lifeix/temp/appdata/mongo/masterslave/master --port 10000
+
+## 关闭 mongodb 
+官方方法是 : 在运行 mongodb的窗口执行 Control+C
+[install]: http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/

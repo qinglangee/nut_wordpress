@@ -1,0 +1,7 @@
+# 图像处理相关资源
+
+## Java图像库相关
+[ImageMagick 魔咒](http://www.ibm.com/developerworks/cn/opensource/os-imagemagick/index.html)  
+
+## 算法相关
+[图像的膨胀与腐蚀、细化](http://www.cnblogs.com/slysky/archive/2011/10/16/2214015.html)  

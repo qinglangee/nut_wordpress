@@ -1,0 +1,5 @@
+# gradle 网页文档
+
+[gradle Eclipse 插件文档](https://github.com/spring-projects/eclipse-integration-gradle/wiki)    
+[Gradle Import Wizard](https://github.com/spring-projects/eclipse-integration-gradle/wiki/Gradle-Import-Wizard)  
+[gradle speed up](https://plus.google.com/+AndroidDevelopers/posts/ECrb9VQW9XP)  

@@ -1,2 +1,1 @@
-# nut_wordpress
-text_blog
+#blog_markdown

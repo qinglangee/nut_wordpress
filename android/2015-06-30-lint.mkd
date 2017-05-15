@@ -1,0 +1,18 @@
+# lint 设置
+
+gradle 中设置　lint 配置文件
+
+	lintOptions {
+        lintConfig file("lint.xml")
+    }
+lint.xml
+
+    <?xml version="1.0" encoding="UTF-8"?>
+	<lint>
+	    <issue id="MissingTranslation" severity="warning" />
+	</lint>
+
+
+refs:  
+[Lint options document](http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Lint-support)  
+[Android Lint Checks](http://tools.android.com/tips/lint-checks)  

@@ -1,0 +1,9 @@
+# jquery 资料网站
+
+[分享14个jQuery插件开发人员易犯的错误](http://www.gbin1.com/technology/jquery/20120509jquery-plugin-dev-rules/)  
+
+[caniuse](http://caniuse.com/)  
+
+[10个帮助你创建超棒jQuery插件的小技巧](http://www.gbin1.com/technology/jquery/20120229writingawesomejqueryplugins/index.html)  
+
+[jQuery插件开发全解析](http://www.iteye.com/topic/545971)  

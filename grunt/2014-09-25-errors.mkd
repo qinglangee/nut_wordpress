@@ -1,0 +1,7 @@
+# grunt 错误集合
+
+## Warning: spawn EMFILE Use --force to continue.
+
+打开的文件描述符超出了系统限制,  在/etc/security/limits.conf文件中设置最大打开文件数，重启生效, 下面是一行提示： 
+
+	* - nofile 8192

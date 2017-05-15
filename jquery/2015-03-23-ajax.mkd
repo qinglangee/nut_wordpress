@@ -1,0 +1,31 @@
+# jquery ajax 设置 
+要在get post中使用同步ajax, 只能设置全局变量, 或者直接使用 ajax() 方法   
+设置全局变量 
+
+	$.ajaxSetup({  
+	    async : false  
+	});   
+直接使用ajax
+
+
+	$.ajax({ 
+		type : "post", 
+		url : this._checkUrl, 
+		data : "inputcode=" + inputcode, 
+		async : false, 
+		dataType : "json",
+		success : function(data){ 
+			data = eval("(" + data + ")"); 
+			aDataSet = data; 
+		} 
+	});  
+
+
+
+
+
+
+refs:  
+[官方文档](http://api.jquery.com/jQuery.ajax/)  
+
+

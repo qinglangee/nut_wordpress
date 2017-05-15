@@ -1,0 +1,18 @@
+# android 9 patch 图片制作
+
+1. 在 sdk/tools 目录中运行 draw9patch 命令
+2. 把图片拖到工作区, 标注 拉伸及内容区域. 左键是添加, 右键是删除
+3. 完事保存就行了
+
+拉伸区域: 在上边和左边标注
+内容区域: 在下边和右边标注
+
+缩放区域大小至少是2x2的, 缩放区域外围要有一层安全边界(不缩放的)
+
+
+
+
+
+refs:  
+[Draw 9-patch](http://developer.android.com/tools/help/draw9patch.html)   
+[android 工具 Draw 9-patch 详解 ](http://blog.csdn.net/yan8024/article/details/6222582)  

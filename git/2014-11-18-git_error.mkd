@@ -1,0 +1,28 @@
+# git 相关的错误
+
+
+
+## error: The requested URL returned error: 403 while accessing https://github.com/
+
+	error: The requested URL returned error: 403 while accessing https://github.com/
+	shines77/gzmalloc.git/info/refs?service=git-receive-pack
+	fatal: HTTP request failed
+出现这个错误原因可能是git账号有两个, 默认配置使用的不是当前需要的. 可以试一下 把https链接换为ssh链接, ssh可以保存公钥, 免密码访问. 也可以设置使用指定用户访问.
+[github--403错误][1], [github初试-403错误][2], [Pushing to Git returning Error Code 403 fatal: HTTP request failed][3]
+
+## ERROR: Permission to iamzc/webcontent.git denied to qinglangee.
+
+	ERROR: Permission to iamzc/webcontent.git denied to qinglangee.
+	fatal: Could not read from remote repository.
+第一个原因, 可能是ssh登录用了github上两个帐号的问题, 如果有两个帐号要配置它们使用不同的 rsa publish key. 方法见另一篇 [如何在同一台电脑上使用两个github账户][4], 这个加sshkey的时候要加到正确的帐号, 如果加错帐号就斯八达了.  
+第二个原因, 两个帐号配置都好了, 但连接时匹配的public key是不对的. 这个是因为配置错了, 循环了,  见 two_account 的配置
+
+*其它关于permission的问题*  ----> 看这里 [git ssh problems][5]  
+
+
+
+[1]: http://www.cnblogs.com/shines77/p/3250955.html
+[2]: http://www.cnblogs.com/hanxiangduo/archive/2012/09/03/github.html
+[3]: http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed
+[4]: http://www.cnblogs.com/foxracle/archive/2012/07/20/2599830.html
+[5]: https://help.github.com/categories/ssh/

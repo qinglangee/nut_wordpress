@@ -1,0 +1,26 @@
+# android不能生成 R.java
+
+##  第一种, 报个错
+
+>Error executing aapt: Cannot run program "/home/lifeix/software/adteclipse/sdk/build-tools/android-4.4W/aapt": error=2, No such file or directory: error=2, No such file or directory abcdefg   line 1  Android ADT Problem
+
+实际上 aapt 是存在的
+
+	sudo apt-get install lib32stdc++6
+	sudo apt-get install lib32z1 lib32z1-dev
+装完应该就好了
+
+## 第二种, 引入的外部工程有问题
+打开工程properties, 在android页面, 引用的工程全是XX, 删掉重新引入一遍就OK了
+
+## 第三种, 编译有错误 
+
+> error: Resource entry new_guide_1 is already defined
+
+这个就是有重名的资源, 查找一下, 去掉重名的
+
+## 第四种， 还是编译错误
+各种错误都有可能， 看一下，其它类有错误的先解决掉
+
+[1]: http://stackoverflow.com/questions/23597432/adt-libstdc-so-6-cannot-open-shared-object-file
+[2]: http://stackoverflow.com/questions/24158727/android-sdk-aapt-error-libstdc-so-6-cannot-open-shared-object-file

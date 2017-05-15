@@ -1,0 +1,82 @@
+# android 摄像机　
+应用[只对有摄像的手机显示][1]，　这个没啥必要
+检测系统中是否有摄像功能　
+
+	hasSystemFeature(PackageManager.FEATURE_CAMERA).
+
+## 拍照
+[Doc][1]  
+启动拍照　Activity
+
+	static final int REQUEST_IMAGE_CAPTURE = 1;
+
+	private void dispatchTakePictureIntent() {
+	    Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+	    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+	        startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+	    }
+	}
+获取公共照片存储位置
+
+	File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+获取　app 私有文件存储位置，　*这个目录下文件会在卸载 app 时全部删除*
+
+	getExternalFilesDir()
+
+压缩图片到　view 合适的大小显示
+
+	private void setPic() {
+	    // 得到 View 的尺寸
+	    int targetW = mImageView.getWidth();
+	    int targetH = mImageView.getHeight();
+
+	    // 得到 bitmap 的尺寸
+	    BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+	    // 设置标志位，只取大小
+	    bmOptions.inJustDecodeBounds = true;
+	    BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+	    int photoW = bmOptions.outWidth;
+	    int photoH = bmOptions.outHeight;
+
+	    // 主牌把图片缩放到多大
+	    int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+
+	    // 恢复标志位，解码图片文件到设置的大小　
+	    bmOptions.inJustDecodeBounds = false;
+	    bmOptions.inSampleSize = scaleFactor;
+	    bmOptions.inPurgeable = true;
+
+	    Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
+	    mImageView.setImageBitmap(bitmap);
+	}
+
+## 录像
+[Doc][2]  
+启动录像Activity
+
+	static final int REQUEST_VIDEO_CAPTURE = 1;
+
+	private void dispatchTakeVideoIntent() {
+	    Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+	    if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+	        startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
+	    }
+	}
+播放
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
+	        Uri videoUri = intent.getData();
+	        mVideoView.setVideoURI(videoUri);
+	    }
+	}
+
+
+
+refs:  
+[Camera][1]  
+
+
+[1]: http://developer.android.com/training/camera/photobasics.html
+[2]: http://developer.android.com/training/camera/videobasics.html

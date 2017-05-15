@@ -1,0 +1,139 @@
+# robot framework 代码片段示例
+
+## 一个完整示例
+测试文件
+
+	*** Settings ***
+	Library         Selenium Library
+	Resource        LoginKeywords.txt
+	Suite Setup     Start Selenium Server
+	Suite Teardown  Stop Selenium Server
+	Test Setup      Login Test Setup
+	Test Teardown   Login Test Teardown
+	Force Tags      FunctionalTest
+	Default Tags    ValidTest
+
+	*** Testcases ***
+	Login Should Succeed When No Username Is Given
+	[Tags]  InvalidTest
+	Enter Username  ${empty}
+	Enter Password  TestPass
+	Click the Login Button
+	Login Is Successful
+
+	Login Should Succeed When the Correct Username and Password are Entered
+	Enter Username  AUser
+	Enter Password  TestPass
+	Click the Login Button
+	Login Is Successful
+LoginKeywords.txt
+
+	*** Variables ***
+		${login address}=  http://zdiles.chaosnet.org/
+		${browser}=  ie
+	*** Keywords ***
+	Login Test Setup
+		Open Browser  ${login address}  ${browser}
+		Maximize Browser Window 
+	Enter Username  [Arguments]  ${username}
+	  Input Text  uname  ${username}
+	 
+	Enter Password  [Arguments]  ${password}
+	  Input Text  pwd  ${password}
+	 
+	Click the Login Button
+	  Click Button  login
+	 
+	Login Is Successful
+	  Page Should Contain  Welcome
+
+	Login is Unsuccessful
+	  Run Keyword And Expect Error  *  Login Is Successful
+
+数据驱动测试
+
+	*** Settings ***
+	Library         Selenium Library
+	Resource        LoginKeywords.txt
+	Test Template   Login Should Fail When
+	Force Tags      DataDriven  ValidTest
+	 
+	*** Testcases ***       Username  Password
+	The Password is Wrong   AUser     TestFail
+	The Password is Empty   AUser     ${empty}
+	Both Fields are Empty   ${empty}  ${empty}
+	 
+	*** Keywords ***
+	Login Should Fail When   [Arguments]  ${username}  ${password}
+	  Enter Username  ${username}
+	  Enter Password  ${password}
+	  Click the Login Button
+	  Login Is Unsuccessful
+来自[Test Automation With Robot Framework][3]  
+
+## 代码片段
+循环
+
+	*** Settings ***
+	Library           String
+
+	*** Test Cases ***
+	For-Loop-In-Range
+	    : FOR    ${INDEX}    IN RANGE    3    7
+	    \    Log    ${INDEX}
+	    \    ${RANDOM_STRING}=    Generate Random String    ${INDEX}
+	    \    Log    ${RANDOM_STRING}
+
+	For-Loop-Elements
+	    @{ITEMS}    Create List    Star Trek    Star Wars    Perry Rhodan
+	    :FOR    ${ELEMENT}    IN    @{ITEMS}
+	    \    Log    ${ELEMENT}
+	    \    ${ELEMENT}    Replace String    ${ELEMENT}    ${SPACE}    ${EMPTY}
+	    \    Log    ${ELEMENT}
+
+	For-Loop-Exiting
+	    @{ITEMS}    Create List    Good Element 1    Break On Me    Good Element 2
+	    :FOR    ${ELEMENT}    IN    @{ITEMS}
+	    \    Log    ${ELEMENT}
+	    \    Run Keyword If    '${ELEMENT}' == 'Break On Me'    Exit For Loop
+	    \    Log    Do more actions here ...
+
+	Repeat-Action
+	    Repeat Keyword    2    Log    Repeating this ...    
+条件执行
+
+	*** Test Cases ***
+	Run-Keyword
+	    ${MY_KEYWORD}=    Set Variable    Log
+	    Run Keyword    ${MY_KEYWORD}    Test
+
+	Run-Keyword-If
+	    ${TYPE}=    Set Variable    V1
+	    Run Keyword If    '${TYPE}' == 'V1'    Log     Testing Variant 1
+	    Run Keyword If    '${TYPE}' == 'V2'    Log    Testing Variant 2
+	    Run Keyword If    '${TYPE}' == 'V3'    Log    Testing Variant 3
+
+	Run-Keyword-Ignore-Error
+	    @{CAPTAINS}    Create List    Picard    Kirk    Archer
+	    Run Keyword And Ignore Error    Should Be Empty    ${CAPTAINS}
+	    Log    Reached this point despite of error
+集合和字符串, 本例中[String][1] 和 [Collections][2] 的Library需要安装
+
+	*** Settings ***
+	Library           String
+	Library           Collections
+
+	*** Test Cases ***
+	StringsAndLists
+	    ${SOME_VALUE}=    Set Variable    "Test Value"
+	    Log    ${SOME_VALUE}
+	    @{WORDS}=    Split String    ${SOME_VALUE}    ${SPACE}
+	    ${FIRST}=    Get From List    ${WORDS}    0
+	    Log    ${FIRST}
+
+
+
+
+[1]: https://code.google.com/p/robotframework/wiki/StringLibrary
+[2]: https://code.google.com/p/robotframework/wiki/CollectionsLibrary
+[3]: http://www.virtuousprogrammer.com/?p=264

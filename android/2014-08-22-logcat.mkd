@@ -1,0 +1,101 @@
+# logcat 使用
+
+## 使用 logcat 命令
+查看和跟踪系统日志缓冲区的命令logcat的一般用法是：
+
+    [adb] logcat [<option>] ... [<filter-spec>] ...
+下文介绍过滤器和命令选项，详细内容可参见[Listing of logcat Command Options][1]。
+可以在开发机中通过远程shell的方式使用logcat命令查看日志输出：
+
+	$ adb logcat
+如果是在远程shell中可直接使用命令：
+
+	# logcat
+## 常用命令
+
+	adb logcat -c　　　      #　清空之前的缓存
+	adb logcat -s "*:E"   # 只显示　error 级别的　log
+## 过滤日志输出
+
+每一条日志消息都有一个标记和优先级与其关联。
+标记是一个简短的字符串，用于标识原始消息的来源 (例如"View" 来源于显示系统)。
+优先级是下面的字符，顺序是从低到高：
+
+	V — 明细 (最低优先级)
+	D — 调试
+	I — 信息
+	W — 警告
+	E — 错误
+	F — 严重错误
+	S — 无记载 (最高优先级，没有什么会被记载)
+通过运行logcat ，可以获得一个系统中使用的标记和优先级的列表，观察列表的前两列，给出的格式是<priority>/<tag>。
+这里是一个日志输出的消息，优先级是“I”，标记是“ActivityManager”：
+
+	I/ActivityManager( 585): Starting activity: Intent { action=android.intent.action...}
+如果想要减少输出的内容，可以加上过滤器表达式进行限制，过滤器可以限制系统只输出感兴趣的标记-优先级组合。
+过滤器表达式的格式是`tag:priority ...` ，其中tag是标记， priority是最小的优先级， 该标记标识的所有大于等于指定优先级的消息被写入日志。也可以在一个过滤器表达式中提供多个这样的过滤，它们之间用空格隔开。
+下面给出的例子是仅输出标记为“ActivityManager”并且优先级大于等于“Info”和标记为“MyApp”并且优先级大于等于“Debug”的日志：
+
+	adb logcat ActivityManager:I MyApp:D *:S
+上述表达式最后的 *:S 用于设置所有标记的日志优先级为S，这样可以确保仅有标记为“View”（译者注：应该为ActivityManager，原文可能是笔误）和“MyApp”的日志被输出，使用 `*:S` 是可以确保输出符合指定的过滤器设置的一种推荐的方式，这样过滤器就成为了日志输出的“白名单”。
+下面的表达是显示所有优先级大于等于“warning”的日志：
+
+	adb logcat *:W
+如果在开发用电脑上运行 logcat (相对于运行运程shell而言)，也可以通过`ANDROID_LOG_TAGS`环境变量设置默认的过滤器表达式：
+
+	export ANDROID_LOG_TAGS="ActivityManager:I MyApp:D *:S"
+需要注意的是，如果是在远程shell或是使用adb shell logcat 命令运行logcat ， `ANDROID_LOG_TAGS` 不会导出到模拟器或手机设备上。
+## 控制日志格式
+
+日志消息在标记和优先级之外还有很多元数据字段，这些字段可以通过修改输出格式来控制输出结果， -v 选项加上下面列出的内容可以控制输出字段：
+
+	brief — 显示优先级/标记和原始进程的PID (默认格式)
+	process — 仅显示进程PID
+	tag — 仅显示优先级/标记
+	thread — 仅显示进程：线程和优先级/标记
+	raw — 显示原始的日志信息，没有其他的元数据字段
+	time — 显示日期，调用时间，优先级/标记，PID
+	long —显示所有的元数据字段并且用空行分隔消息内容
+
+可以使用 -v启动 logcat来控制日志格式：
+
+	[adb] logcat [-v <format>]
+
+例如使用 thread 输出格式：
+
+	adb logcat -v thread
+
+注意只能在 -v 选项中指定一种格式
+
+## Viewing Alternative Log Buffers
+
+Android日志系统为日志消息保持了多个循环缓冲区，而且不是所有的消息都被发送到默认缓冲区，要想查看这些附加的缓冲区，可以使用-b 选项，以下是可以指定的缓冲区：
+
+	radio — 查看包含在无线/电话相关的缓冲区消息
+	events — 查看事件相关的消息
+	main — 查看主缓冲区 (默认缓冲区)
+
+-b 选项的用法：
+
+	[adb] logcat [-b <buffer>]
+例如查看radio缓冲区：
+
+	adb logcat -b radio
+adb logcat简单举例：
+
+1、导入日志到sd卡
+
+	adb logcat -d -f /sdcard/log.txt
+## 错误处理
+不输出内容
+
+1. 有可能是调试模式时拔下连接线导致的, 重启Eclipse可以治疗这种情况
+
+
+
+refs:  
+[adb logcat 查看日志](http://blog.csdn.net/xyz_lmn/article/details/7004710)  
+
+
+
+[1]: http://developer.android.com/guide/developing/tools/adb.html#logcatoptions

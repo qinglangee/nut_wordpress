@@ -1,0 +1,16 @@
+# svn 仓库转为 git仓库
+安装git-svn  
+创建作者文件,格式如下
+
+    guaniu = Leeiio <xxx@xxx.com>
+克隆svn仓库
+
+    $ git svn clone <SVN版本库地址> --no-metadata -A authors.txt -t tags -b branches -T trunk <转换的目的目录名>
+    $ git svn clone svn://svn.xy.l99.com:9001/lifeix_jars/DataAnalyzerServer --authors-file=passwd --no-metadata --stdlayout --trunk=./  DataAnalyzerServer
+
+[其他转换branch tag等,看链接][1]  
+[svn2git 的转换方法][2]
+
+[1]:http://www.cnblogs.com/analyzer/articles/1736729.html
+[2]:https://github.com/nirvdrum/svn2git
+                                                    

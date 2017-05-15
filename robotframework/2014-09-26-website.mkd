@@ -1,0 +1,16 @@
+# robot framework链接资源
+
+## document
+[robot framework document](http://robotframework.org/robotframework/)  
+[robot framework UserGuide](http://robotframework.googlecode.com/hg/doc/userguide/RobotFrameworkUserGuide.html?r=2.8.5)  
+[robot framework built-in keywords](http://robotframework.googlecode.com/hg/doc/libraries/BuiltIn.html?r=2.8.5) 
+[robot framework system keywords](http://robotframework.googlecode.com/hg/doc/libraries/OperatingSystem.html?r=2.8.5) 
+[Selenium2Lib doc and keywords](http://rtomac.github.io/robotframework-selenium2library/doc/Selenium2Library.html)  
+[chrome driver](http://code.google.com/p/selenium/wiki/ChromeDriver#Overriding_the_Chrome_binary_location)  
+
+
+## other links
+[Robot Framework Tutorial](https://blog.codecentric.de/en/2012/03/robot-framework-tutorial-overview/)  
+[Test Automation with Robot Framework](http://www.virtuousprogrammer.com/?p=264)  
+[start the Robot Tests from Eclipse using Maven](http://blog.codecentric.de/en/2010/03/robot-framework-acceptance-tests-develop-with-eclipse-run-with-maven/)  
+[writing maintainable automated acceptance tests](http://dhemery.com/pdf/writing_maintainable_automated_acceptance_tests.pdf)  

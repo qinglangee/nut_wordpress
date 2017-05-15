@@ -1,0 +1,5 @@
+# tmux 网络资源
+[A Tmux crash course: tips and tweaks.](http://tangosource.com/blog/a-tmux-crash-course-tips-and-tweaks/)   
+[tmux的使用方法和个性化配置](http://mingxinglai.com/cn/2012/09/tmux/)  
+[如何使用Tmux提高终端环境下的效率](https://linux.cn/article-3952-1.html)  
+[TMUX – The Terminal Multiplexer (Part 2)](http://blog.hawkhost.com/2010/07/02/tmux-%E2%80%93-the-terminal-multiplexer-part-2/)  

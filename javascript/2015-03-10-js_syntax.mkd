@@ -1,0 +1,11 @@
+# js 语法
+
+正则
+
+    var a = /aa(\d+)cc/;
+	var group = "aa77cc".match(a);
+	if(group != null){
+		for(var i=0;i<group.length;i++){
+		  console.log("i is :" + i + " " + group[i]);
+		}
+	}

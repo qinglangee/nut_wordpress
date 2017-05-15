@@ -1,0 +1,26 @@
+# ejs 的一些常用功能
+
+## 配置修改
+[修改ejs后缀为 html][1], 第一种
+
+    app.engine('.html', require('ejs').renderFile);  
+    app.set('view engine', 'html');  
+第二种
+
+    app.engine('.html', require('ejs').__express);  
+    app.set('view engine', 'html');  
+*注意*：在路由里，可以省去 index.html的后缀，直接写index即可，但是在 视图里 include的时候，还是需要写上.html的后缀，否则报错
+PS:Express变动太大，不成熟呀
+
+
+
+
+
+refs:  
+[更改ejs模板后缀.ejs为.html ][1]  
+
+
+
+
+
+[1]: http://blog.csdn.net/ei__nino/article/details/17517819

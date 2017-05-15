@@ -1,0 +1,96 @@
+# 概念
+
+* Aspect: a modularization of a concern that cuts across multiple classes. 例如事务管理
+* Join point: a point during the execution of a program, such as the execution of a method or the handling of an exception.
+* Advice: action taken by an aspect at a particular join point. 
+* Pointcut: a predicate that matches join points.
+* Introduction: declaring additional methods or fields on behalf of a type. 
+* Target object: object being advised by one or more aspects.
+* AOP proxy: an object created by the AOP framework in order to implement the aspect contracts (advise method executions and so on). 
+* Weaving: linking aspects with other application types or objects to create an advised object. 
+
+AOP - 面向切面编程
+
+# 实现一个 AOP
+
+## 配置spring
+web.xml中配置spring listener
+
+	<web-app>
+		<!-- spring 配置文件 -->
+		<context-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/applicatiionContext.xml</param-value>
+		</context-param>
+		<!-- 加载spring -->
+		<listener>
+			<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		</listener>
+		<listener>
+	</web-app>
+spring 配置文件中打开 @AspectJ 支持
+
+	<beans xmlns="http://www.springframework.org/schema/beans" ... >
+		<aop:aspectj-autoproxy/>
+	</beans>
+## AOP 代码与配置
+
+### 声明一个 aspect
+定义一个bean
+
+	<bean id="myAspect" class="org.xyz.NotVeryUsefulAspect">
+	   <!-- configure properties of aspect here as normal -->
+	</bean>
+bean实现, 用org.aspectj.lang.annotation.Aspect注解标记
+
+	package org.xyz;
+	import org.aspectj.lang.annotation.Aspect;
+
+	@Aspect
+	public class NotVeryUsefulAspect {
+
+	}
+### 声明一个 pointcut
+spring 只支持在方法上的 join point, 所以 spring 的 pointcut 可以理解为方法过滤器.
+
+	@Pointcut("execution(* transfer(..))")   // the pointcut expression
+	private void anyOldTransfer() {}         // the pointcut signature
+### 声明一个 advice
+有 Before, After Running, After throwing, After, Around 等类型
+
+	import org.aspectj.lang.annotation.Aspect;
+	import org.aspectj.lang.annotation.Before;
+
+	@Aspect
+	public class BeforeExample {
+	  @Before("com.xyz.myapp.SystemArchitecture.dataAccessOperation()")
+	  public void doAccessCheck() {
+	    // ...
+	  }
+	}
+arround 类型的第一个参数必须是 ProceedingJoinPoint
+
+	import org.aspectj.lang.annotation.Aspect;
+	import org.aspectj.lang.annotation.Around;
+	import org.aspectj.lang.ProceedingJoinPoint;
+
+	@Aspect
+	public class AroundExample {
+
+	  @Around("com.xyz.myapp.SystemArchitecture.businessService()")
+	  public Object doBasicProfiling(ProceedingJoinPoint pjp) throws Throwable {
+	    // start stopwatch
+	    Object retVal = pjp.proceed();
+	    // stop stopwatch
+	    return retVal;
+	  }
+
+	}
+
+
+
+
+
+
+参考资料:
+[Aspect Oriented Programming with Spring](http://docs.spring.io/spring/docs/3.2.x/spring-framework-reference/html/aop.html)

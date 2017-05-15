@@ -1,0 +1,14 @@
+# mongodb 网络资源
+
+## 工具
+[集合内存查看工具](http://eng.wish.com/mongomem-memory-usage-by-collection-in-mongodb/)  
+
+
+
+## 教程
+[mongodb最新document](http://docs.mongodb.org/manual/#)  
+[Java Getting Started](http://mongodb.github.io/mongo-java-driver/3.4/driver/getting-started/quick-start/)  
+[MongoDB 帖子合集](http://www.ttlsa.com/mms/)  
+[MongoDB MMS 监控备份教程](http://www.ttlsa.com/mms/mongodb-mms-monitor-backup-tutorial/)  
+[MongoDB与内存](http://huoding.com/2011/08/19/107)  
+[mongodb 的表设计](https://leanpub.com/mongodbschemadesign)  

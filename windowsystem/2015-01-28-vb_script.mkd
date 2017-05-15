@@ -1,0 +1,5 @@
+# vb  脚本
+
+ 编辑hosts文件, 存为.vbs文件
+
+	CreateObject("Wscript.Shell").run "notepad  C:\Windows\System32\drivers\etc\hosts"

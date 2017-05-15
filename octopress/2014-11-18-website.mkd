@@ -1,0 +1,3 @@
+#  octopress 网站资料
+
+[用octopress搭建博客系统](http://www.cnblogs.com/stevelin/p/3281811.html)  

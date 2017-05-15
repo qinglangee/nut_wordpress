@@ -1,0 +1,5 @@
+# git 网站资料
+
+[Git教程](http://blog.jobbole.com/25775/)
+[Git 少用 Pull 多用 Fetch 和 Merge ](http://www.oschina.net/translate/git-fetch-and-merge)  
+[英文原文](http://longair.net/blog/2009/04/16/git-fetch-and-merge/)  

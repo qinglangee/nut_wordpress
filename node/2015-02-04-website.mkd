@@ -1,0 +1,14 @@
+# nodejs  网络资料
+
+## 文档 
+[ECMAScript6 入门](http://es6.ruanyifeng.com/#docs/intro)  
+
+
+[npm 包查找地址](https://www.npmjs.com/)  
+[Uncaught Exceptions in Node.js](http://shapeshed.com/uncaught-exceptions-in-node/)  
+[Debugging Performance Issues](http://www.joyent.com/developers/node/debug#postmortem)  
+[node promise](https://www.promisejs.org/)  
+[node promise patterns](https://www.promisejs.org/patterns/)  
+
+# 相关类库 软件
+[PhantomJS (命令行浏览器)](http://javascript.ruanyifeng.com/tool/phantomjs.html) 

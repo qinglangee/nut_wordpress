@@ -1,0 +1,11 @@
+# backbone使用
+## 依赖
+[underscore.js](http://underscorejs.org/)
+## 对象绑定
+
+
+
+
+
+# 参考资料
+1. [backbone FAQ](http://backbonejs.org/#FAQ-why-backbone)

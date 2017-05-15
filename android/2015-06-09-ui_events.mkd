@@ -1,0 +1,15 @@
+# 监听ui事件 
+
+在Button的　onTouch()　Listener中，只有　DOWN/UP/MOVE 这几个事件，其它的收不到．[Input Events][1] 没有讲为什么　．
+
+
+
+
+
+refs:
+[Input Events][1]  
+
+
+
+
+[1]: http://developer.android.com/guide/topics/ui/ui-events.html

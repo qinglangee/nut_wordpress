@@ -1,0 +1,125 @@
+#! /usr/bin/perl
+use strict;
+use File::Basename;
+use File::Copy;
+
+# 转换成 jekyll/octpress 需要的形式, 并copy 到blog_static目录
+
+my $src="";
+if($#ARGV > -1){
+    $src=shift;
+}else{
+    $src="/home/zhch/git_repo/blog_markdown";
+}
+my $dest="/home/zhch/document/blog_static/_posts/";
+#find $src |grep -e \.mkd$ > tempmkdfiles
+my $dir = $src;
+my $processed_count = 0;
+listDir($dir);
+printInfo();
+
+sub printInfo{
+    print "==================================================\n";
+    print "src dir: $src\n";
+    print "dest dir: $dest\n";
+    print "processed file count: $processed_count\n";
+}
+
+# 递归列出目录并处理
+sub listDir{
+    my $dir = shift;
+    my @files = glob "$dir/*";
+    my $dirbase = basename($dir);
+    #print "$dirbase\n";
+    foreach(@files){
+        if(-f $_){
+            #print "$_\n";
+            my $basename=basename($_);
+            my $dest_file = $dest.$basename;
+            if(-e $dest_file){
+                my @src_arr = stat($_);
+                my @dest_arr = stat($dest_file);
+                #print "$_\n";
+                #print "new: $src_arr[9]\n";
+                #print "old: $dest_arr[9]\n";
+
+                # [9]是文件修改时间 , 源文件比较新, 就copy
+                if($src_arr[9] > @dest_arr[9] ){
+                    cpfile($_, $dest_file, $dirbase);
+                }
+            }else{
+                cpfile($_, $dest_file, $dirbase);
+            }
+        }else{
+            #print "dir :  $_\n";
+            listDir($_);
+        }
+    }
+}
+
+sub cpfile{
+    my $srcfile = shift;
+    my $destfile= shift;
+    my $category= shift;
+
+    # 不是.mkd文件不处理
+    if(!($srcfile=~/mkd$/)){
+        #print "not mkd: $srcfile\n";
+        return;
+    }
+
+    # 全局计数器
+    $processed_count++;
+
+    print "$category\n";
+    print "cp $srcfile\n";
+
+    open SRC, $srcfile;
+    my $has_title=0;
+    my $title="";
+    while(<SRC>){
+       $title = $_;
+       last;
+    }
+        print "title: $title";
+    if($title=~/#\s*(.*)$/){
+        $title=$1;
+        $has_title=1;
+        print "new title: $title\n";
+    }
+
+    close SRC;
+
+    open SRC, $srcfile;
+    
+    #open DEST, >$destfile;
+    unlink $destfile || die("Unable to delete file $destfile -- $!\n");
+
+
+    open(DEST,">>$destfile") || die("Cannot Open File");
+    print DEST "---\n";
+    print DEST "layout: post\n";
+    if($has_title == 1){
+        print DEST "title: \"$title\"\n";
+    }
+
+    print DEST "categories: $category\n";
+    print DEST "---\n";
+
+    my $headflag=0;
+    while(<SRC>){
+        if($headflag==0){ # 去掉第一行
+            $headflag++;
+        }else{
+            print DEST $_;
+        }
+    }
+
+
+
+
+    close SRC;
+    close DEST;
+
+    #copy($srcfile, $destfile) or die "Copy failed: $!";
+}

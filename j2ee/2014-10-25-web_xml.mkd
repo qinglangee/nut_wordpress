@@ -1,0 +1,25 @@
+# web.xml 的字段说明
+
+## load-on-startup
+
+	
+	<servlet>
+		<servlet-name>lifeix-notes</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>lifeix-notes</servlet-name>
+		<url-pattern>/notes/*</url-pattern>
+	</servlet-mapping>
+我们注意到它里面包含了这段配置：`<load-on-startup>1</load-on-startup>`，那么这个配置有什么作用呢？
+
+1)load-on-startup元素标记容器是否在启动的时候就加载这个servlet(实例化并调用其init()方法)。
+2)它的值必须是一个整数，表示servlet应该被载入的顺序
+3)当值为0或者大于0时，表示容器在应用启动时就加载并初始化这个servlet；
+4)当值小于0或者没有指定时，则表示容器在该servlet被选择时才会去加载。
+5)正数的值越小，该servlet的优先级越高，应用启动时就越先加载。
+6)当值相同时，容器就会自己选择顺序来加载。
+
+所以，`<load-on-startup>x</load-on-startup>`，中x的取值1，2，3，4，5代表的是优先级，而非启动延迟时间。
+通常大多数Servlet是在用户第一次请求的时候由应用服务器创建并初始化，但`<load-on-startup>n</load-on-startup>`   可以用来改变这种状况，根据自己需要改变加载的优先级！

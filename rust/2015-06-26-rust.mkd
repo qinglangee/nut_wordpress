@@ -1,0 +1,68 @@
+# rust   the Book
+## 2.1
+[文档位置](/usr/local/share/doc/rust)
+On Windows, it's in a share/doc directory
+## 2.2
+[编辑器插件](https://github.com/rust-lang/rust/blob/master/src/etc/CONFIGS.md)  
+[编辑器配置](https://github.com/rust-lang/rust/tree/master/src/etc/CONFIGS.md)  
+
+## 4.6
+
+??
+怎么 Send 和 Sync 看起来都是线程安全的，是这个意思么？
+
+## 5.2
+let x: i32 = diverges();
+let x: String = diverges();
+
+x 的值是什么？？
+
+## 5.20 
+Inheritance 的实现 可不可以 多个的实现都写在一个里面。
+
+## 5.21
+while let 是怎么回事，是一次就break还是好多走到false才break, 代码运行一下看看
+
+## 5.23
+看不懂
+
+
+
+# rust by example
+[rust by example](http://rustbyexample.com)  
+
+## 13
+两个都叫 T ,怎么区分? [13](http://rustbyexample.com/generics/gen_fn.html)
+
+## 13.7 
+没看
+
+## 14.2  14.3.1
+到底什么样的 let 后才转换 owner 呢
+
+	let a = Box::new(5i32);
+    println!("a contains: {}", a);
+    let b = a;
+
+    // let 后, 这里会报错的
+    //println!("a contains: {}", a);
+
+    struct Book {
+	    title: &'static str,
+	    year: u32,
+	}
+
+    let geb = Book {
+        title: "Gödel, Escher, Bach",
+        year: 1979,
+    };
+
+    let mut mutable_geb = geb;
+
+	// 这里 let 后就不报错
+    borrow_book(&geb);
+
+## 14.3.2
+
+	let _ref_to_integer = &_integer;  // 这个就是 freezing
+	let _ref_to_integer = _integer;  // 这个就不是 freezing ??

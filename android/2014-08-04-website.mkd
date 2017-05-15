@@ -1,0 +1,69 @@
+# android 资料网站
+
+## 列表
+
+[官方教程中文版 ](http://hukai.me/android-training-course-in-chinese/)  
+[Genymotion模拟器](http://www.genymotion.cn/#theme=home)  
+快速下载Google Play应用
+由于一些你懂的原因，国内无法直接访问Google Play商店。而且下载Google Play商店还是需要登陆谷歌账户，以国内的网络，下载成功简直是太困难了。
+这里介绍一款不需要账户国内即可访问的Web工具。可以通过输入包名或者Google Play地址即可下载。
+[APK Downloader](http://apps.evozi.com/apk-downloader/)  
+[android大项目运行中出现问题汇总](http://www.cnblogs.com/yaozhongxiao/p/3521428.html)  
+[android genymotion模拟器怎么使用以及和google提供的模拟器性能对比 ](http://blog.csdn.net/yearafteryear/article/details/9257283) 
+[aar包转换成eclipse项目](https://commonsware.com/blog/2014/07/03/consuming-aars-eclipse.html)  
+[Android 学习之路](http://stormzhang.com/android/2014/07/07/learn-android-from-rookie/)   
+[红杏翻墙工具](http://blog.honx.in/dev-only/)  
+[Android常用控件列表控件](http://www.cnblogs.com/linjiqin/category/284058.html)  
+[关于如何高效率开发一个 Android APP](https://www.v2ex.com/t/250328)  
+
+## 性能
+[Android 性能分析案例](http://blog.chengyunfeng.com/?p=458)  
+[Android应用性能优化之分析工具[二]](http://www.cnblogs.com/myzh/archive/2013/03/17/2965225.html)  
+[Android应用性能优化之优化列表头像过度绘制[一]](http://www.cnblogs.com/myzh/archive/2013/03/12/2954899.html)  
+
+
+## 工具类库
+[android工具类](www.trinea.cn/android/android-common-utils/)  
+[Gradle 编译系统](http://tools.android.com/tech-docs/new-build-system/user-guide)  
+[Android示例代码查找工具](http://www.codota.com/)  
+[Android军火库(英文版)](http://android-arsenal.com/)  
+[Android Asset Studio](http://romannurik.github.io/AndroidAssetStudio/index.html)  
+[快速下载Google Play应用](http://apps.evozi.com/apk-downloader/)  
+[Square的开源库LeakCanary](https://github.com/square/leakcanary)  
+Square的开源库LeakCanary是查找内存泄漏的优秀工具,强烈建议大家使用
+[codota 代码搜索工具](http://www.codota.com/)  
+
+
+## 高级内容
+[自定义XML属性和视图](http://staticallytyped.wordpress.com/2011/04/16/android-custom-xml-attributes-and-views/)   
+[Android 插件化 动态升级](http://www.trinea.cn/android/android-plugin/)  
+
+## android 开源项目
+[android常用工具类](http://www.trinea.cn/android/android-common-utils/)  
+[android 开源项目分类汇总](https://github.com/Trinea/android-open-project)  
+[android 开源项目源码解析](https://github.com/android-cn/android-open-project-analysis)  
+[开源项目介绍](http://www.trinea.cn/android/android-open-project-summary/)  
+
+## 官方教程
+[处理运行时状态改变 (andling Runtime Changes)](http://developer.android.com/guide/topics/resources/runtime-changes.html)  
+[youtubo中文频道](https://www.youtube.com/channel/UCQqa5UIHtrnpiADC3eHFupw)  
+
+## Document
+[ID document](http://developer.android.com/guide/topics/ui/declaring-layout.html#id)   
+
+## 大牛博客
+[How to improve x86 support of Android apps, libs, engines](http://ph0b.com/improving-x86-support-of-android-apps-libs-engines/#ArchDependentAPKs)  
+
+
+## View
+[Android LayoutInflater深度解析 给你带来全新的认识](http://blog.csdn.net/lmj623565791/article/details/38171465)  
+
+
+
+
+
+
+
+
+refs:  
+[快速提高Android开发效率的Web工具](http://droidyue.com/blog/2014/08/03/great-web-tools-for-android-development/)  

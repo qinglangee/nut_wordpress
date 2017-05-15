@@ -1,0 +1,61 @@
+# 安装 robot framework
+
+## 下载, 安装 robot framework and selenium lib
+*github*   [robot framework][1]   [Selenium 2 (WebDriver) library][2]  
+
+	git clone https://github.com/robotframework/robotframework.git
+	git clone https://github.com/rtomac/robotframework-selenium2library.git
+从源码安装  
+	
+	# 从源码安装 robot framework
+	cd robotframework
+	python setup.py install
+	
+	# jython 安装  (如果用seleniun2Library , jython 用 2.7 版本的)
+	 jython setup.py install
+
+### jybot 运行selenium2Library失败
+
+>静下心来思索，如果在pybot上运行正确，则说明selenium代码没有大的问题,唯一有可能的是jython引起的区别。可能selenium用了一些python2.6或者2.7规范中的新语法特性，或者新库，但是目前流行的jython2.5.2版本并不支持。
+
+>6.下载了jython2.7的alpha版本安装。
+
+>7.运行jybot ，一切OK。
+[在jybot下跑Selenium2Library][8]  
+
+
+
+从pip安装  
+*pip安装selenium library时, 会安装所有的依赖, 所以不需要先安装robot framework*
+
+	# 用pip安装 selenium library (也可以从源码安装, 参看[文档][2])
+	pip install robotframework-selenium2library
+
+## 安装其它库
+
+## 安装 ride
+
+	sudo apt-get install python-wxgtk2.8
+	sudo apt-get install python-wxversion
+	sudo pip install robotframework-ride
+## 安装 chrome driver
+[说明链接][5] [下载链接][6]  
+下载后放到 /usr/bin 目录下
+
+
+
+refs:  
+[Robot Framework Installation][7]
+[Robot Framework : Installation on Ubuntu and Linux][3]  
+[Robotframework setup on linux + ride + seleniumlibrary][4]  
+[在jybot下跑Selenium2Library][8]
+
+
+[1]: https://github.com/robotframework/robotframework
+[2]: https://github.com/rtomac/robotframework-selenium2library
+[3]: http://testingknols.blogspot.jp/2014/05/robot-framework-installation-on-ubuntu.html
+[4]: http://charandeepmatta.com/2012/07/24/robotframework-setup-on-linux-ride-seleniumlibrary/
+[5]: http://code.google.com/p/selenium/wiki/ChromeDriver#Overriding_the_Chrome_binary_location
+[6]: http://chromedriver.storage.googleapis.com/index.html?path=2.9/
+[7]: http://code.google.com/p/robotframework/wiki/Installation
+[8]: http://blog.sina.com.cn/s/blog_654c6ec70101e3mn.html

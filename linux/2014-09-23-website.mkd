@@ -1,0 +1,6 @@
+# linux 网络资料
+[PDF 下载：最牛B的 Linux Shell 命令](http://wowubuntu.com/linux-shell-pdf.html)  
+[iproute基本介绍](http://kumu-linux.github.io/blog/2013/06/04/iproute/)  
+
+## linode 资料
+[Linode虚拟主机Linux安全第一步](http://www.ideawu.net/blog/archives/476.html)

@@ -1,0 +1,51 @@
+# 安装
+
+[nginx中文文档](http://www.nginx.cn/doc/index.html)
+## centos 下使用 yum 安装
+[nginx: Linux packages 安装方法](http://nginx.org/en/linux_packages.html#stable)  
+创建yum配置文件 `/etc/yum.repos.d/nginx.repo`
+
+	[nginx]
+	name=nginx repo
+	baseurl=http://nginx.org/packages/OS/OSRELEASE/$basearch/
+	gpgcheck=0
+	enabled=1
+Replace “OS” with “rhel” or “centos”, depending on the distribution used, and “OSRELEASE” with “5”, “6”, or “7”, for 5.x, 6.x, or 7.x versions, respectively. 
+
+centos7
+
+	[nginx]
+	name=nginx repo
+	baseurl=http://nginx.org/packages/centos/7/$basearch/
+	gpgcheck=0
+	enabled=1
+
+##  下载安装
+http://nginx.org/download/nginx-1.6.0.tar.gz
+解压后, 安装命令
+
+    ./configure
+    make
+    sudo make install
+
+[英文安装文档](http://wiki.nginx.org/Install)
+[中文安装文档](http://www.nginx.cn/install)
+
+### centos安装可能出现的问题
+
+*依赖PCRE没有安装*
+
+	yum install pcre-devel
+后面还有些其它需要的也都一样装上
+
+	yum install zlib openssl openssl-devel
+
+## 启动
+ubuntu下必须用sudo启动，不然只能在前台运行
+sudo /usr/local/nginx/nginx
+
+[运行和控制nginx](http://www.nginx.cn/nginxchscommandline#reload%20config)
+
+## 配置
+
+[中文配置文档说明](http://www.nginx.cn/76.html)

@@ -1,0 +1,7 @@
+# java 网络资料
+
+[import new Java 学习资源](http://www.importnew.com/14613.html)  
+[Google Guava官方教程（中文版）](http://ifeve.com/google-guava/)  
+[在北京做Java开发如何月薪达到两万，需要技术水平达到什么程度？](http://www.zhihu.com/question/39890405)  
+[优雅的SSM架构(Spring+SpringMVC+Mybatis)](https://github.com/wosyingjun/beauty_ssm)  
+[查找类所在的　jar 包](http://www.findjar.com/index.x)  

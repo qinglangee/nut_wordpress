@@ -1,0 +1,184 @@
+# android 如何支持多屏幕分辨率
+
+## Overview of Screens Support
+### 术语和概念  Terms and concepts
+*Screen size* 屏幕大小.  实际的对角线大小. Android 归类为四种: small, normal, large, and extra-large
+*Screen density* 屏幕密度. 一个物理单位内的像素数-dpi (dots per intch).   
+分类为6种 : low, medium, high, extra-high, extra-extra-high, and extra-extra-extra-high
+*Orientation* 方向  landscape or portrait
+*Resolution* 屏幕的总像素数, 实现多屏幕支持时, 写程序不针对这个. 只针对 屏幕大小和屏幕密度来编程.
+*Density-independent pixel (dp)*  虚拟像素单位, 与密度无关的一种实现.
+"medium" 密度下, 标准屏幕是 160dpi, 在 160 dpi 密度的屏幕上, 1dp=1像素. 换算单位就是  px = dp * (dpi/160). 
+
+### 屏幕支持范围  Range of screens supported
+* 四级别  small, normal, large, and xlarge
+> 从3.2(level 13)开始, 这个就弃用了 详见[ Declaring Tablet Layouts for Android 3.2][1]  
+
+* 六级别的  
+
+Launcher icons on a mobile device must be 48x48 dp.
+Launcher icons for display on Google Play must be 512x512 pixels.
+密度级别, 以40为基准  3:4:6:8   :12:16, 前面4个基本覆盖主流手机, 图标必须是48dp, 36x36 48x48 72x72 96x96 144x144 192x192 是dp与px 1:1 下的图标大小
+
+	ldpi    (low)                    ~120dpi
+	mdpi    (medium)                 ~160dpi  x1
+	hdpi    (high)                   ~240dpi  x1.5
+	xhdpi   (extra-high)             ~320dpi  x2
+	xxhdpi  (extra-extra-high)       ~480dpi  x3
+	xxxhdpi (extra-extra-extra-high) ~640dpi  x4
+图片等没有标记修饰符的资源会被认为是给　mdpi 的资源
+
+各处size的最小尺寸要求: 
+
+* xlarge screens are at least 960dp x 720dp
+* large screens are at least 640dp x 480dp
+* normal screens are at least 470dp x 320dp
+* small screens are at least 426dp x 320dp
+
+## 如何支持多种屏幕  How to Support Multiple Screens
+###　为了更好地支持多屏幕分辨率, 要做到以下几点: 
+
+* 在manifest 中明确声明支持的屏幕大小  Explicitly declare in the manifest which screen sizes your application supports
+	这样不符合的屏幕就不能下载你的应用了 (>_<) [Screen Compatibility Mode][2]
+* 为不同屏幕提供不同布局   Provide different layouts for different screen sizes
+* 提供不同的图片   Provide different bitmap drawables for different screen densities
+	[Provide an xxx-high-density launcher icon][3]You should not use the xxxhdpi qualifier for UI elements other than the launcher icon.
+	启动图标一般要放在 `res/mipmap-[density]` 目录中, 与其它图片分开. 了解更多[Managing Projects Overview][4]  
+
+### 使用资源修饰符
+
+格式 : `<resources_name>-<qualifier>`
+
+	<resources_name> : 资源名,  (如: drawable or layout).
+	<qualifier> : 配置修饰符, 可用的修饰符见下表
+
+*修饰符可以用短划线分开多个*
+
+Screen characteristic	Qualifier	Description
+Size	
+
+	small	Resources for small size screens.
+	normal	Resources for normal size screens. (This is the baseline size.)
+	large	Resources for large size screens.
+	xlarge	Resources for extra-large size screens.
+Density
+
+	ldpi	Resources for low-density (ldpi) screens (~120dpi).
+	mdpi	Resources for medium-density (mdpi) screens (~160dpi). (This is the baseline density.)
+	hdpi	Resources for high-density (hdpi) screens (~240dpi).
+	xhdpi	Resources for extra-high-density (xhdpi) screens (~320dpi).
+	xxhdpi	Resources for extra-extra-high-density (xxhdpi) screens (~480dpi).
+	xxxhdpi	Resources for extra-extra-extra-high-density (xxxhdpi) uses (~640dpi). Use this for the launcher icon only, see note above.
+	nodpi	Resources for all densities. These are density-independent resources. The system does not scale resources tagged with this qualifier, regardless of the current screen's density.
+	tvdpi	Resources for screens somewhere between mdpi and hdpi; approximately 213dpi. This is not considered a "primary" density group. It is mostly intended for televisions and most apps shouldn't need it—providing mdpi and hdpi resources is sufficient for most apps and the system will scale them as appropriate. If you find it necessary to provide tvdpi resources, you should size them at a factor of 1.33*mdpi. For example, a 100px x 100px image for mdpi screens should be 133px x 133px for tvdpi.
+Orientation	
+
+	land	Resources for screens in the landscape orientation (wide aspect ratio).
+	port	Resources for screens in the portrait orientation (tall aspect ratio).
+Aspect ratio	
+
+	long	Resources for screens that have a significantly taller or wider aspect ratio (when in portrait or landscape orientation, respectively) than the baseline screen configuration.
+	notlong	Resources for use screens that have an aspect ratio that is similar to the baseline screen configuration.
+如果有不想被自动拉伸的资源, 放在 -nodpi 目录中, 这个修饰符下的资源不会被系统拉伸
+
+
+### 设计可替换布局和可绘资源　Designing alternative layouts and drawables
+
+通常你应该根据size和orientation来提供　layout 资源，　根据　density　来提供　bitmap drawable.
+
+* Alternative layouts
+
+* Alternative drawables
+To create alternative bitmap drawables for different densities, you should follow the 3:4:6:8:12:16 scaling ratio between the six generalized densities
+
+## Android 3.2 之后使用　Tablet 布局   Declaring Tablet Layouts for Android 3.2
+
+可用修饰符
+
+smallestWidth	         sw<N>dp　　　
+
+	Examples:
+	sw600dp
+	sw720dp
+Available screen width	  w<N>dp
+
+	Examples:
+	w720dp
+	w1024dp
+Available screen height	  h<N>dp
+
+	Examples:
+	h720dp
+	h1024dp
+	etc.
+
+## 最佳实践　　Best Practices
+1. Use wrap_content, fill_parent, or dp units when specifying dimensions in an XML layout file
+2. Do not use hard coded pixel values in your application code
+3. Do not use AbsoluteLayout (it's deprecated)
+4. Supply alternative bitmap drawables for different screen densities
+
+## Additional Density Considerations
+解释了为什么　480x800　的屏幕取大小会报成 320x533
+
+### 运行时缩放图片　　Scaling Bitmap objects created at runtime
+### 把　dp 转换成　px  Converting dp units to pixel units
+
+	// The gesture threshold expressed in dp
+	private static final float GESTURE_THRESHOLD_DP = 16.0f;
+
+	// Get the screen's density scale
+	final float scale = getResources().getDisplayMetrics().density;
+	// Convert the dps to pixels, based on density scale
+	mGestureThreshold = (int) (GESTURE_THRESHOLD_DP * scale + 0.5f);
+
+	// Use mGestureThreshold as a distance in pixels...
+
+### Using pre-scaled configuration values
+获取滑动事件的窗口大小
+
+	private static final int GESTURE_THRESHOLD_DP = ViewConfiguration.get(myContext).getScaledTouchSlop();
+
+## 什么是各种 VGA
+QVGA
+WVGA
+WQVGA
+HVGA
+
+这些术语都是指屏幕的分辨率。
+VGA：Video Graphics Array，即：显示绘图矩阵，相当于640×480 像素；
+HVGA：Half-size VGA，即：VGA的一半，分辨率为480×320，像三星盖世Ace S5830就是使用这分辨率；
+QVGA：Quarter VGA，即：VGA的四分之一，分辨率为320×240，一般用于小屏手机 像三星盖世Mini S5570就是使用这分辨率；
+
+WQVGA：Wide Quarter VGA，即：扩大的QVGA，分辨率比QVGA高，比VGA低，一般是：400×240，480×272；
+WVGA：Wide Video Graphics Array，即：扩大的VGA，分辨率为800×480像素，像三星i9000就是使用这分辨率；
+
+FWVGA：Full Wide VGA ，数码产品屏幕材质的一种，VGA的另一种形式，比WVGA分辨率高，别名 ： Full Wide VGA, ，其分辨 率为854×480象素(16:9)。
+
+
+## PNG 无用内容清理工具
+Tools such as [OptiPNG][6] or [Pngcrush][7] can ensure that this metadata is removed and that your image asset file sizes are optimized
+
+
+refs:  
+[Android 多屏支持文档](http://developer.android.com/guide/practices/screens_support.html)   
+[Android各种屏幕分辨率（VGA、HVGA、QVGA、WQVGA、WVGA、FWVGA） 详解 ](http://blog.csdn.net/lucherr/article/details/8498400)  
+
+
+扩展阅读:  
+[Declaring Tablet Layouts for Android 3.2](http://developer.android.com/guide/practices/screens_support.html#DeclaringTabletLayouts)   
+[How Android Finds the Best-matching Resource](http://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)  
+[Screen Compatibility Mode(看不太懂)](http://developer.android.com/guide/practices/screen-compat-mode.html)  
+[Managing Projects Overview.][4]  
+[Icon Design Guidelines][5]  
+[DPI Calculator / PPI Calculator](https://www.sven.de/dpi/)  
+
+
+
+[1]: http://developer.android.com/guide/practices/screens_support.html#DeclaringTabletLayouts
+[2]: http://developer.android.com/guide/practices/screen-compat-mode.html
+[3]: http://developer.android.com/design/style/iconography.html#xxxhdpi-launcher
+[4]: http://developer.android.com/tools/projects/index.html#mipmap
+[5]: http://developer.android.com/guide/practices/ui_guidelines/icon_design.html
+[6]: http://optipng.sourceforge.net/
+[7]: http://pmt.sourceforge.net/pngcrush/

@@ -1,0 +1,46 @@
+# android 错误
+
+## android.view.InflateException: Binary XML file line #2: Error inflating class com.lifeix.pintimes.commission.TimelineItem
+1,  看看类名写对了没有......
+
+##  ClassCastException adding header to list view (ListFragment onCreateView)
+>java.lang.ClassCastException: android.widget.FrameLayout$LayoutParams cannot be cast to android.widget.AbsListView$LayoutParams
+
+solution from [stackoverflow][1]  ,  Try changing the line...
+
+	View header = (View)inflater.inflate(R.layout.header_layout, container, false);
+to
+
+	View header = (View)inflater.inflate(R.layout.header_layout, null, false);
+
+## android app name is not translated
+临时解决方法:
+
+	Eclipse > Preference > Android > Lint Error Checking的Correctness: Messages > MissingTranslate
+将 Severity 从 Fetal 改为 Warming
+
+## Unable to resolve target 'android-i'
+导入旧版本的安卓开发程序时，会提示
+
+Unable to resolve target 'android-i'  错误，而且有些文件会提示import java.* cannot resolved，这是旧版本的安卓sdk和现在的的不一致造成的。
+方法是：修改工程project.properties中的target=17改为当前版本，如target=18即可。 
+*在eclipse中就是在 properties的Android页面， 选一下相应的版本*
+
+## Installation error: INSTALL_FAILED_CONFLICTING_PROVIDER 
+[Provider 的问题][2]  
+1.http://blog.163.com/c_sihuan/blog/static/34201403201071101415327/
+
+这主要是由于调试的环境中已有一个同名的Provider存在。 解决方法是修改AndroidManifest.xml中的
+
+	<provider android:name="DataProvider" android:authorities="com.misoo.provider.SQ03"></provider>
+
+即将android:authorities的值修改为别的就可以了。
+2.自己回去一看，anroidmanifest.xml里面把 android:name authorities里面的名    字写错
+3.其它, 看[原文][2]
+
+## Failed to install *.apk on device *: timeout
+1. 手机重启试试
+2. adb server 重启试试
+
+[1]: http://stackoverflow.com/questions/27140494/classcastexception-adding-header-to-list-view-listfragment-oncreateview  
+[2]: http://choujinoffice.blog.163.com/blog/static/17082405120109267538763/

@@ -1,0 +1,9 @@
+# maven 网络资源
+
+[Maven 包资源查找网站](http://mvnrepository.com/)    
+[Maven 包资源查找网站（不太通）](http://search.maven.org/)    
+[国内镜像（oschina）]( http://maven.oschina.net)   osc 原厂的，今天才偷偷发现
+[国内镜像（oschina）](http://maven.oschina.net/content/groups/public/)  
+[查找类所在的　jar 包](http://www.findjar.com/index.x)  
+
+[Maven POM Reference](http://maven.apache.org/pom.html#Plugin%5FManagement)  

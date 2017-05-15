@@ -1,0 +1,7 @@
+# C++点滴
+
+## 字符串转数字函数
+
+	#include <stdlib.h>
+	int atoi (const char * str);
+[atoi()](http://www.cplusplus.com/reference/cstdlib/atoi/)  
