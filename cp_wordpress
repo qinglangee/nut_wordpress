@@ -63,7 +63,7 @@ sub cpfile{
     my $category= shift;
 
     # 不是.mkd文件不处理
-    if(!($srcfile=~/mkd$/)){
+    if(!($srcfile=~/(mkd|md)$/)){
         #print "not mkd: $srcfile\n";
         return;
     }
