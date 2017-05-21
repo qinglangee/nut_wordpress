@@ -3,6 +3,7 @@
 ## locale 命令
 `locale` - get locale-specific information
 
+local 的输出:
 >LANG=en_US.UTF-8
 LANGUAGE=en_US:en
 LC_CTYPE=en_US.UTF-8

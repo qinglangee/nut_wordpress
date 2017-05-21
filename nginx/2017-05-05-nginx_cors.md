@@ -1,4 +1,6 @@
-# nginx中配置　CORS(Cross-Origin Resource Sharing)
+# nginx中配置　CORS
+CROS 全称 (Cross-Origin Resource Sharing)
+
 现在大多数的浏览器都可以支持CORS进行跨域请求，但CORS需要服务器端进行配合，发送相应的响应头．
 nginx中配置方法如下：
 
@@ -11,7 +13,7 @@ nginx中配置方法如下：
     }
 ```
 2. 看起来比较牛X的配置方法
-
+```
     #
     # Wide-open CORS config for nginx
     #
@@ -44,7 +46,7 @@ nginx中配置方法如下：
             add_header 'Access-Control-Expose-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Content-Range,Range';
          }
     }
-
+```
 
 refs:  
 [Nginx CORS实现JS跨域 ](http://blog.csdn.net/oyzl68/article/details/18741057)  
