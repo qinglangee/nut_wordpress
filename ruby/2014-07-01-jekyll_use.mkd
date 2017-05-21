@@ -9,7 +9,7 @@ looks [here][1]
 
 ## 默认配置
 默认配置文件名是`_config.yml`, `jekyll new myblog` 生成的内容是
-
+```
 	# Site settings
 	title: Your awesome title
 	email: your-email@domain.com
@@ -20,6 +20,7 @@ looks [here][1]
 	# Build settings
 	markdown: kramdown
 	permalink: pretty
+```
 >默认目录是_posts, 只有一层结构, 多层目录中的不识别.  
 >文件名必须是 yyyy-MM-dd-filename.mkd格式的, 不带日期的也不识别.  
 

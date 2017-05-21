@@ -1,5 +1,9 @@
 # jekyll 安装
 
+## 安装最新版本啊
+1. 按照末尾换成淘宝ruby源
+2. `gem install jekyll` 就可以了
+
 ## git repo
 
 	$ git clone https://github.com/jekyll/jekyll.git
