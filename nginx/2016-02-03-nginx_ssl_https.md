@@ -12,10 +12,10 @@
 然后就是自己颁发证书给自己
 
 	#cd /usr/local/nginx/conf
-	#openssl genrsa -des3 -out server.key 1024
-	#openssl req -new -key server.key -out server.csr
-	#openssl rsa -in server.key -out server_nopwd.key
-	#openssl x509 -req -days 365 -in server.csr -signkey server_nopwd.key -out server.crt
+	#openssl genrsa -des3 -out server.key 1024                  # 生成　server.key
+	#openssl req -new -key server.key -out server.csr           # 生成　server.csr
+	#openssl rsa -in server.key -out server_nopwd.key　　　　　　 # 生成　server_nopwd.key
+	#openssl x509 -req -days 365 -in server.csr -signkey server_nopwd.key -out server.crt        # 生成　server.crt
 
 至此证书已经生成完毕，下面就是配置nginx
 
@@ -38,7 +38,7 @@
 今天终于研究捣鼓出来了，只要将之前生成的server.crt文件导入到系统的证书管理器就行了，具体方法：
 控制面板 -> Internet选项 -> 内容 -> 发行者 -> 受信任的根证书颁发机构 -> 导入 -》选择server.crt
 
-结果试了一下不管用。
+*对于自己的域名，添加例外就可以访问了，但对于google.com的域名好像不管用。说是　This site uses HTTP Strict Transport Security (HSTS) *
 
 refs:  
 
