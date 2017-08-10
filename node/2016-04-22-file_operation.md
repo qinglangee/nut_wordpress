@@ -62,5 +62,6 @@
 		}		
 
 refs:  
+[Node.js文件系统、路径的操作函数](http://www.cnblogs.com/gaojun/p/4159488.html#_Toc406152888)  
 [nodejs file system api](https://nodejs.org/api/fs.html)  
 [nodejs目录遍历](https://swordair.com/directory-traversal-in-nodejs/)  

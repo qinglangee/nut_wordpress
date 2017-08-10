@@ -9,6 +9,9 @@ package 生成器用于生成 package 模板，　Ctrl-Shift-P 打开面板，�
 包名与　atom.io　上的包重名时有可能因为冲突不加载，所以包名可以用　`your-name-word-count`　的格式防止重名．
 `package.json` 包含包的重要信息，`main`字段指向入口文件，如果不指定　atom 查找　index.coffee 或　index.js
 
+## 调试
+`C-S-i` 打开控制台
+
 
 
 

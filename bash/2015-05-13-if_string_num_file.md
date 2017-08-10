@@ -44,7 +44,9 @@ fi
 `>=` 大于等于(在双括号中使用) `(("$a" >= "$b"))`
 
 ## 多个条件连接
-`and  -a     or -o`
+`and:  -a     or: -o`
+`if [ $a -gt 5 -a $a -lt 10 ]`
+`if [ $a -gt 5 -o $a -lt 2 ]`
 
 `if [ $num -gt 0 -a $num -lt 5 ];then ...` if(num > 0 and num < 5)
 

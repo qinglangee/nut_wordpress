@@ -5,3 +5,6 @@
 
 ## @Controller
 一类特殊的 @Component， 一般用来包含 @RequestMapping 标记的方法 。
+
+## @Transient
+标记持久Bean中的属性不参与持久化
