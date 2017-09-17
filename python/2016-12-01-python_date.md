@@ -1,22 +1,30 @@
 # python date处理
 
-date.today()：返回一个表示当前本地日期的date对象；
+## 模块
+```
+# -*- coding: utf-8 -*-
+import datetime
+```
+*下面 date 是指 datetime.date ,datetime 也是 datetime.datetime*
 
-date.isoformat()：返回格式如'YYYY-MM-DD’的字符串；
-date.strftime(fmt)：自定义格式化字符串。在下面详细讲解。
+`today = date.today()`：返回一个表示当前本地日期的date对象；  
+`mydate = date(2012,9,17)` 获得一个指定日期  
+
+`mydate.isoformat()`：返回格式如'YYYY-MM-DD’的字符串；
+`mydate.strftime(fmt)`：自定义格式化字符串。在下面详细讲解。
 
 
-datetime.utcnow()：返回一个当前utc时间的datetime对象；
-datetime.now([tz])：返回一个表示当前本地时间的datetime对象，如果提供了参数tz，则获取tz参数所指时区的本地时间；
-datetime.strptime(date_string, format)：将格式字符串转换为datetime对象；
-
-datetime. strftime (format) 
+`datetime.utcnow()`：返回一个当前utc时间的datetime对象；
+`now = datetime.now([tz])`：返回一个表示当前本地时间的datetime对象，如果提供了参数tz，则获取tz参数所指时区的本地时间；
+`datetime.strptime(date_string, format)`：将格式字符串转换为datetime对象；
+`time.mktime(now.timetuple())`: 把时间转换为unix时间戳
+`datetime.strftime(format)` 
 
 
 datetime、date、time都提供了strftime()方法， 该方法接收一个格式字符串， 输出日期时间的字符串表示。 下表是从python手册中拉过来的， 我对些进行了简单的翻译（翻译的有点噢口~~）。
 
 格式字符  意义
-
+```
 	%a 星期的简写。如 星期三为Web
 	%A 星期的全写。如 星期三为Wednesday
 	%b 月份的简写。如4月份为Apr
@@ -69,9 +77,10 @@ datetime、date、time都提供了strftime()方法， 该方法接收一个格�
     # 今天是这周的第3天    
     # 今天是今年的第097天    
     # 今周是今年的第14周   
-
+```
 
 
 
 refs:  
 [python datetime处理时间](http://www.cnblogs.com/lhj588/archive/2012/04/23/2466653.html)  
+[python时间处理之date ](http://blog.csdn.net/wirelessqa/article/details/7973113)  

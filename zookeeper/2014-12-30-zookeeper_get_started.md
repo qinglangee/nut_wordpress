@@ -1,15 +1,14 @@
 # zookeeper 入门
-下载一份zookeeper, 解压后在 docs 目录中有帮助文档
+下载一份[zookeeper][2], 解压后在 docs 目录中有帮助文档
 ## 单实例操作
 
-建立一个配置文件  conf/zoo.cfg:
-
-	tickTime=2000
-	dataDir=/var/lib/zookeeper
-	clientPort=2181
-启动
-
-	bin/zkServer.sh  start
+1. 建立一个配置文件  conf/zoo.cfg:
+```
+tickTime=2000
+dataDir=/var/lib/zookeeper
+clientPort=2181
+```
+2. 启动 `bin/zkServer.sh  start`
 	
 
 # 命令
@@ -49,3 +48,4 @@ delete /zktest
 [Getting Started][1]  
 
 [1]: http://zookeeper.apache.org/doc/trunk/zookeeperStarted.html#sc_InstallingSingleMode
+[2]: http://zookeeper.apache.org/releases.html

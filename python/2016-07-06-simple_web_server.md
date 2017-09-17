@@ -45,7 +45,7 @@
 	#打印返回的内容
 	print header
 	print html
-	# 接受表达提交的数据
+	# 接受表单提交的数据
 	form = cgi.FieldStorage()
 
 	print '接收表达get的数据 ：',form
@@ -55,7 +55,7 @@
 	# 解析处理提交的数据
 	content = form['text'].value
 
-	formhtml = '''''
+	formhtml = '''
 	<label for="">you say:</label><input type="text" value="%s">
 	'''
 
@@ -70,12 +70,15 @@
 	在程序第一行加入：　`#! /usr/bin/env python`　　如果是python3运行的话把 python 换成 python3
 
 
-4  访问 http://192.168.0.55:9415/cgi-bin/form.py?text=test  进行测试
+4  访问 http://localhost:8888/cgi-bin/form.py?text=test  进行测试
 
-
+## 控制其它程序
+如果要通过server控制其它程序，需要有相关的权限．用root帐号启动的话，会被赋于nobody的权限．　　
+可以用一个非root用户启动被控制程序，再用相同用户启动server.
+`su - seimiagent -c "cd /srv/seimi_ctrl_server && nohup python -m CGIHTTPServer 8001 &"`  指定seimiagent用户启动　CGIHTTPServer.
 
 refs:  
 [用Python建立最简单的web服务器 ](http://www.cnblogs.com/xuxn/archive/2011/02/14/build-simple-web-server-with-python.html)  
 [CGIHTTPServer](https://docs.python.org/2/library/cgihttpserver.html)  
 [python自带CGIHTTPServer服务器与htm进行CGI交互](http://blog.csdn.net/dijason/article/details/8256372)  
-[python 出现OSError: [Errno 8] Exec format error的原因](http://www.cnblogs.com/dreamtecher/p/5096488.html)  
+[python 出现OSError: Errno 8 Exec format error的原因](http://www.cnblogs.com/dreamtecher/p/5096488.html)  

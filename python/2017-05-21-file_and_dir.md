@@ -1,4 +1,9 @@
 # python 文件目录相关操作
+`import os`
+
+## 判断文件是否存在
+`os.path.isfile('test.txt')` #如果不存在就返回False
+`os.path.exists(directory)` #如果目录不存在就返回False 
 
 ##　递归遍历目录
 ```

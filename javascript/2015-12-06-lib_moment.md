@@ -10,6 +10,8 @@
 var time = moment("2017-08-04 17:48", "YYYY-MM-DD HH:mm");
 // 转换成date类型
 date = time.toDate();
+// Date 转换成 moment
+myMoment = moment(date);
 ```
 
 ## 加减日期
@@ -29,6 +31,7 @@ date = time.toDate();
 	minutes	    m
 	seconds	    s
 	milliseconds	ms
+## 日期相减
 
 
 

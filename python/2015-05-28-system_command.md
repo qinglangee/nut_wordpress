@@ -16,7 +16,7 @@
 	    exstr = traceback.format_exc()
 	    print exstr
 
-
+    # 放在函数中调用
 	import traceback
 	import subprocess
 
