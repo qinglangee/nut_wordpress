@@ -7,6 +7,10 @@
 	>>>for i in range(0,10):f.write(str(i)+'\n')
 	.  .  .
 	>>> f.close()
+中文 windows 系统，文件中有中文时，默认会用 gbk 编码打开文件。 如果是 utf-8 编码的文件， 需要指出编码才行。 
+```
+file_object = open('thefile.txt', 'r+', encoding='utf-8')
+```
 
 open使用open打开文件后一定要记得调用文件对象的close()方法。比如可以用try/finally语句来确保最后能关闭文件。  
 
@@ -16,6 +20,12 @@ open使用open打开文件后一定要记得调用文件对象的close()方法�
 	finally:  
 	 file_object.close( )  
 注：不能把open语句放在try块里，因为当打开文件出现异常时，文件对象file_object无法执行close()方法。 
+
+中文 windows 系统，文件中有中文时，默认会用 gbk 编码打开文件。 如果是 utf-8 编码的文件， 需要指出编码才能正常读取内容。 
+```
+file_object = open('thefile.txt', 'r+', encoding='utf-8')
+file_object = open('thefile.txt', encoding='utf-8')
+```
 
 二、文件内容追加，从0到9的10个随机整数：
 

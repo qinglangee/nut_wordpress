@@ -42,6 +42,7 @@ Firefox 需要版本在45以上．
     }
 ```
 入口文件 borderify.js :
+如果多个js文件,按列表顺序加载,在最后一个写初始化语句
 ```
     document.body.style.border = "5px solid red";
 ```
@@ -60,5 +61,7 @@ Firefox 需要版本在45以上．
 方法：在配置页面(about:config)把 `xpinstall.signatures.required` 的值设置为 `false`.
 refs:  
 [WebExtensions文档](https://developer.mozilla.org/en-US/Add-ons/WebExtensions)  
+[opera 版本的文档](https://dev.opera.com/extensions/)  
+[WebExtensions wiki](https://wiki.mozilla.org/WebExtensions)  
 [MDN Add On 开发介绍（非主力了）](https://developer.mozilla.org/en-US/Add-ons)  
 [Add-on signing in Firefox](https://support.mozilla.org/en-US/kb/add-on-signing-in-firefox?as=u&utm_source=inproduct#w_what-can-i-do-if-firefox-disables-an-installed-add-on)  

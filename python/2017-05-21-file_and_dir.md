@@ -1,9 +1,21 @@
 # python 文件目录相关操作
 `import os`
 
+## 解析文件名
+```
+path = 'd:\\temp\\d3\\http_request_json\\bsurfaces.po'
+names = os.path.splitext(path) # 根据后缀切分文件名
+print(names[1])  # 取扩展名 .po
+print(names[0])  # 除了扩展名 d:\temp\d3\http_request_json\bsurfaces
+name = os.path.basename(path)  # 取文件名
+print(name)  # bsurfaces.po
+```
+
 ## 判断文件是否存在
 `os.path.isfile('test.txt')` #如果不存在就返回False
 `os.path.exists(directory)` #如果目录不存在就返回False 
+
+
 
 ##　递归遍历目录
 ```

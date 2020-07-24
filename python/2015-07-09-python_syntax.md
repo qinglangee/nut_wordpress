@@ -22,6 +22,12 @@ http://learnxinyminutes.com/docs/zh-cn/python-cn/
 10 * 2  # => 20
 35 / 5  # => 7
 
+# 各种取整方法
+int(a)  # 向下取整
+round(a)  # 四舍五入
+math.ceil(a)  # 向上取整
+math.modf(a)  # 返回一个元组， 前面是小数部分， 后面是整数部分
+
 # 整数的除法会自动取整
 5 / 2  # => 2
 
@@ -111,6 +117,24 @@ None is None  # => True
 0 == False  # => True
 "" == False  # => True
 
+# 随机数
+
+    import random
+     
+    # 产生 1 到 10 的一个整数型随机数，包含1和10
+    print( random.randint(1,10) )        
+    # 产生 0 到 1 之间的随机浮点数
+    print( random.random() )             
+    # 产生  1.1 到 5.4 之间的随机浮点数，区间可以不是整数
+    print( random.uniform(1.1,5.4) )     
+    # 从序列中随机选取一个元素
+    print( random.choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]) )   
+    # 生成从1到100的间隔为2的随机整数
+    print( random.randrange(1,100,2) )   
+    # 将序列a中的元素顺序打乱
+    a=[1,3,5,6,7]                
+    random.shuffle([1,3,5,6,7])
+    print(a)
 
 ####################################################
 ## 2. 变量和集合
@@ -267,13 +291,14 @@ some_var = 5
 
 # 这是个 if 语句，在 python 中缩进是很重要的。
 # 下面的代码片段将会输出 "some var is smaller than 10"
+```
 if some_var > 10:
     print "some_var is totally bigger than 10."
 elif some_var < 10:    # 这个 elif 语句是不必须的
     print "some_var is smaller than 10."
 else:           # 这个 else 也不是必须的
     print "some_var is indeed 10."
-
+```
 
 """
 用for循环遍历列表
@@ -283,6 +308,8 @@ else:           # 这个 else 也不是必须的
     mouse is a mammal
 """
 for animal in ["dog", "cat", "mouse"]:
+    if(animal == 'dog'):
+        continue     # 跳过本次循环
     # 你可以用 % 来格式化字符串
     print "%s is a mammal" % animal
 
@@ -423,7 +450,6 @@ class Human(object):
     @staticmethod
     def grunt():
         return "*grunt*"
-```
 
 # 实例化一个类
 i = Human(name="Ian")
@@ -443,11 +469,12 @@ j.get_species()  # => "H. neanderthalensis"
 # 访问静态变量
 Human.grunt()  # => "*grunt*"
 
+```
 
 ####################################################
 ## 6. 模块
 ####################################################
-
+```
 # 我们可以导入其他模块
 import math
 print math.sqrt(16)  # => 4
@@ -472,4 +499,23 @@ math.sqrt(16) == m.sqrt(16)  # => True
 # 也可以通过下面的方法查看模块中有什么属性和方法
 import math
 dir(math)
-	
+```	
+####################################################
+## 7. 数据结构
+####################################################
+
+### list 列表
+list = ["python", "java", "c", "c++", "js", "perl", "c#", "basic"]   # 初始化 赋值
+list[0] list[-1]  list[-2]   # 取元素
+list[1:5] list[1:] # 截取一段
+list.append("ruby")  # 添加元素
+del list[2]  # 删除元素
+len(list)   # 取长度
+[1,2,3] + [4,5,6]   # 列表组合
+`["hi"]*4   # 列表重复4次`
+3 in [1,2,3]  # 判断是否在列表中
+
+
+### tuple 元组
+
+### dict  字典

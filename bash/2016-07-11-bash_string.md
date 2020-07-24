@@ -1,6 +1,7 @@
 # bash string 处理
 
 ## 一、判断读取字符串值
+```
 表达式 	含义
 ${var} 	变量var的值, 与$var相同
   	 
@@ -18,8 +19,9 @@ ${var:?ERR_MSG} 	如果var没被设置, 那么就打印$ERR_MSG *
   	 
 ${!varprefix*} 	匹配之前所有以varprefix开头进行声明的变量
 ${!varprefix@} 	匹配之前所有以varprefix开头进行声明的变量
+```
 
-加入了“*”  不是意思是： 当然, 如果变量var已经被设置的话, 那么其值就是$var.
+    加入了“*”  不是意思是： 当然, 如果变量var已经被设置的话, 那么其值就是$var.
 
     [chengmo@localhost ~]$ echo ${abc-'ok'}
     ok
@@ -119,6 +121,19 @@ ${string/%substring/replacement} 	如果$string的后缀匹配$substring, 那么
 
     ${变量/查找/替换值} 一个“/”表示替换第一个，”//”表示替换所有,当查找中出现了：”/”请加转义符”\/”表示。
 
+## 取文件名和后缀
+```
+file="thisfile.txt"
+echo "filename: ${file%.*}"
+echo "extension: ${file##*.}"
+
+
+for i in `ls`
+do
+echo   magick $i ${i%.*}.gif
+magick $i ${i%.*}.gif; 
+done
+```
 
 
 refs:  

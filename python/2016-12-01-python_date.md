@@ -20,6 +20,15 @@ import datetime
 `time.mktime(now.timetuple())`: 把时间转换为unix时间戳
 `datetime.strftime(format)` 
 
+```
+import time
+
+# time获取当前时间戳
+tt = time.time() * 1000  # 1586585892242.8424  乘1000到毫秒 
+tt = time.time()         # 1586585892.2428424
+now = int(tt)            # 1586585892
+print(now)
+```
 
 datetime、date、time都提供了strftime()方法， 该方法接收一个格式字符串， 输出日期时间的字符串表示。 下表是从python手册中拉过来的， 我对些进行了简单的翻译（翻译的有点噢口~~）。
 

@@ -38,6 +38,6 @@ myMoment = moment(date);
 更多示例参照[官方文档][1]  
 
 refs:  
-[moment doc]
+[moment doc][1]  
 
 [1](http://momentjs.com/docs/)  

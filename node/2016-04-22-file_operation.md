@@ -1,7 +1,14 @@
 # nodejs 文件操作相关
+```
+var fs = requier 'fs';
+var path = require('path');
+```
 
-`var fs = requier 'fs'`
-## 读文件
+## 文件名操作
+```
+    path.basename('/foo/bar/baz/asdf/quux.html', '.html');   // returns  'quux'
+```
+## 读文本文件
 
 	fs.readFile('./json.json',function(err,data){
 	    if(err) throw err;
@@ -21,6 +28,28 @@
 	});
 	// 已过时 Deprecated: Use fs.statSync() or fs.accessSync() instead.
 	var exist = fs.existsSync(path); // 返回 true false
+## 文件复制
+
+    var sourceFile = path.join(dirname, fileName);
+    var destPath = path.join(dirname, "dest", fileName);
+
+    var readStream = fs.createReadStream(sourceFile);
+    var writeStream = fs.createWriteStream(destPath);
+    readStream.pipe(writeStream);
+## 文件移动
+
+    var fileName = "coverflow-3.0.1.zip";
+
+    var sourceFile = path.join(dirname, fileName);
+    var destPath = path.join(dirname, "dest", fileName);
+
+    fs.rename(sourceFile, destPath, function (err) {
+      if (err) throw err;
+      fs.stat(destPath, function (err, stats) {
+        if (err) throw err;
+        console.log('stats: ' + JSON.stringify(stats));
+      });
+    });
 ## 遍历目录
 深度优先遍历
 
