@@ -98,8 +98,10 @@ JS原生获取
 iframe调用上级窗口的JS
 window.parent.上级方法;
 
+## array 
+arr.forEach(function(e){console.log(e);})
 
-## 自己的框架
+## 自己的框架和库 
 zhQuery.js
 提供一些实用方法
 ```
@@ -108,6 +110,11 @@ var zh = {
         return document.querySelector(cssSelector);
     }
 };
+```
+
+video_helper.js
+```
+var videoHelper = {}
 ```
 
 

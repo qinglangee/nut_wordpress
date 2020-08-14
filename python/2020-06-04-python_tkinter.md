@@ -27,7 +27,7 @@ window.geometry('500x300')
 window.resizable(0,0) #防止用户调整尺寸
 window.mainloop()
 ```
-## window控制
+## window控制  
 ```
 #防止用户调整尺寸
 window.resizable(0,0) 
@@ -46,7 +46,7 @@ win.wm_attributes('-topmost',True)
 # 设置窗口最小化 恢复 最大化
 root.state('icon')   # icon/iconic：最小化；normal：正常显示； zoomed：最大化  不带参数可以返回窗口的状态
 ```
-## 常用控件和布局方式
+## 布局方式
 pack
 ```
 frameTop = Frame(window)  # 添加容器
@@ -66,11 +66,25 @@ Label(root,text = 'pack3',bg = 'green').pack(fill = X,expand = 0)
 grid
 ```
 Label(fBottom, text='懂你').grid(row=0, column=0) # 网格布局
-Label(fBottom, text='懂你').grid(row=0, column=0, sticky="ew") # 网格布局, 组件扩张到格子的东西两边
+Label(fBottom, text='懂你').grid(row=0, column=0, sticky="ew") # 网格布局, 组件扩张到格子的东西两边, sticky 有时会与 weight 有关
 Label(fBottom, text='懂你').grid(row=0, column=0, rowspan=2, columnspan=3) # 组件占两行，3列
+```
+place  
+用 place 而局需要父级控件有一定面积，如果父级直接pack(), 会显示不出来。
+```
+lab01.place(x=10, y=10)
+lab01.place(x=10, y=10, anchor=NW)
+```
+## 常用控件
+取控件的数据
+```
+canvas.update()  # 取之前先 update 一下
+print(canvas.winfo_width())    # 取宽度
+print(canvas.winfo_height())   # 取高度
 ```
 Label
 ```
+Label(fBottom, text='懂你', width=5, height=3) # 宽和高设置的是字符个数和行数
 Label(fBottom, text='懂你', anchor='w').pack() # 内部对齐方向
 Label(win, wraplength=250, justify="left") # 设置文件自动换行，不满的行靠哪边
 label["text"] = "new text"   # 修改文字
@@ -94,6 +108,8 @@ entry.get(1.0, END)   # 取数据要设置起始结束位置
 Button
 ```
 Button(fCenter,text='录入', padx=5, command=record).pack()  # 按钮和函数
+Button(fCenter,text='录入', command=lambda:record(index)).pack()  # 函数传参数 
+Button(fCenter,text='录入', command=record(index)).pack()  # 函数传参数, 没 lambda 是直接执行 
 ```
 Checkbutton
 ```
@@ -103,11 +119,18 @@ C1 = Checkbutton(top, text = "RUNOOB", variable = var1, \
                  width = 20)
 var1.get()  # 取控件的值
 ```
-Frame
+Frame  && ttk.Frame
 ```
 # 清空子组件
 for widget in myFrame.winfo_children():
     widget.destroy()
+
+## 设置颜色
+ele = Frame(p,  bg=color)
+
+gui_style = ttk.Style()
+gui_style.configure('My.TFrame', background='#334353')
+frame = ttk.Frame(p, style='My.TFrame')
 ```
 Treeview
 ```
@@ -127,6 +150,31 @@ fileBar.add_separator()                       #在菜单项中加入一条分割
 window.config(menu =MenuBar)                  #放置菜单栏到主窗口
 fileBar.delete(0)                             #删除第一个位置菜单项
 MenuBar.add_checkbutton                       #添加确认按钮
+```
+Scrollbar 滚动条
+```
+scroll = Scrollbar(parent)
+scroll.pack(side=RIGHT, fill=Y)
+self.tree=ttk.Treeview(parent, yscrollcommand=scroll.set)
+scroll.config(command=self.tree.yview)
+
+
+# 画布的滚动条
+
+canv = Canvas(box, bg='red', relief=SUNKEN)
+canv.config(width=100, height=200) # display area size
+# 就高度管点用，其它的都不管用不知道是啥原因
+canv.config(scrollregion=(0, 0, 100, 800)) # canvas size corners
+canv.config(highlightthickness=0) # no pixels to border
+canv.create_rectangle(10, 10, 110, 810)
+
+
+sbar = Scrollbar(box)
+sbar.config(command=canv.yview)                   # xlink sbar and canv
+canv.config(yscrollcommand=sbar.set)              # move one moves other
+sbar.pack(side=RIGHT, fill=Y)                     # pack first=clip last
+canv.pack(side=LEFT, expand=YES, fill=BOTH)       # canv clipped first
+
 ```
 
 ## 显示图片
